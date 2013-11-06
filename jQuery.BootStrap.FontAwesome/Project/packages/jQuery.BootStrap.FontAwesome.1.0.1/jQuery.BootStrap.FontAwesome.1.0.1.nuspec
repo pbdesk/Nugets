@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>jQuery.BootStrap.FontAwesome</id>
+    <version>1.0.1</version>
+    <title>jQuery.BootStrap.FontAwesome Combined</title>
+    <authors>Pinal Bhatt[PBDesk.com]</authors>
+    <owners>Pinal Bhatt[PBDesk.com]</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>jQuery.BootStrap.FontAwesome Combined. (Includes original and minified bundled  jQuery.2.0.3, bootstrap.3.0.1 &amp; FontAwesome.4.0.1 )</description>
+    <summary>jQuery.BootStrap.FontAwesome Combined. (Includes original and minified bundled  jQuery.2.0.3, bootstrap.3.0.1 &amp; FontAwesome.4.0.1 )</summary>
+    <releaseNotes>Includes original and minified bundled  jQuery.2.0.3, bootstrap.3.0.1 &amp; FontAwesome.4.0.1</releaseNotes>
+    <copyright />
+    <language />
+  </metadata>
+</package>
