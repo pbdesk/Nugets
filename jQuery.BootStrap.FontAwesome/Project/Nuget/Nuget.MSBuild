@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+    <BaseFolder>$(MSBuildProjectDirectory)</BaseFolder>   
+    <PackagingDestination>$(BaseFolder)\Versions</PackagingDestination>
+    <ProjectName>jQuery.BootStrap.FontAwesome</ProjectName>
+		<BuildRevision>0</BuildRevision>
+		<MajorVersion>2</MajorVersion>
+    <MinorVersion>0</MinorVersion>
+    <BuildNumber>0</BuildNumber>
+		<BuildVersion>$(MajorVersion).$(MinorVersion).$(BuildNumber)</BuildVersion>
+		<PackageFolder>$(ProjectName).$(BuildVersion)</PackageFolder>
+    <NugetExe>$(BaseFolder)\..\.nuget</NugetExe>
+		<MSBuildExtensionPack>$(BaseFolder)\MSBuild.ExtensionPack.4.0.8.0</MSBuildExtensionPack>
+    <CSProjFolder>$(BaseFolder)\..\$(ProjectName)\</CSProjFolder>
+    <PackageTitle>jQuery.BootStrap.FontAwesome Combined</PackageTitle>
+    <PackageDesc>Includes bundled, original and minified {0}, {1} &amp; {2}</PackageDesc>
+	</PropertyGroup>
+  
+  <Import Project="$(MSBuildExtensionPack)\MSBuild.ExtensionPack.tasks"/>
+  
+  <Target  Name="Build">
+
+    <ItemGroup>
+      <namespaces Include="MyNamespace">
+        <Prefix>DefaultNS</Prefix>
+        <Uri>http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd</Uri>
+      </namespaces>
+      <CSSFiles Include="$(CSProjFolder)\Content\Bootstrap.FontAwsome*.css"></CSSFiles>
+      <FontFiles Include="$(CSProjFolder)\fonts\*.*"></FontFiles>
+      <ScriptFiles Include="$(CSProjFolder)\Scripts\jQuery.Bootstrap*.js"></ScriptFiles>
+      
+    </ItemGroup>
+    
+    <Message Text="$(BaseFolder)"/>
+
+    <Message Text="$(PackagingDestination)"/>
+    <Message Text="$(BuildVersion)"/>
+    <Message Text="$(PackageFolder)"/>
+    <Message Text="$(NugetExe)"/>
+    <Message Text="$(MSBuildExtensionPack)"/>
+    <Message Text="$(CSProjFolder)"/>
+
+    <!--<MSBuild Projects="$(CSProjFolder)\$(ProjectName).csproj"
+        Properties="Configuration=Release;" />-->
+
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="ReadElements"
+                                       File="$(CSProjFolder)packages.config"
+                                       XPath="/packages/package[@id='bootstrap']"
+                                       >
+      <Output PropertyName="MyValue" TaskParameter="Elements"/>
+
+
+    </MSBuild.ExtensionPack.Xml.XmlFile>
+
+
+    <Message Text="V=$(MyValue)"/>
+    
+    
+    
+    
+    
+    
+
+    <MakeDir  Directories="$(PackagingDestination)\$(PackageFolder)"/>
+    <Copy SourceFiles="$(BaseFolder)\$(ProjectName).nuspec" DestinationFiles="$(PackagingDestination)\$(PackageFolder)\$(ProjectName).$(BuildVersion).nuspec" />
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(PackagingDestination)\$(PackageFolder)\$(ProjectName).$(BuildVersion).nuspec"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:version"
+                                       InnerText="$(BuildVersion)"/>
+
+    <MakeDir  Directories="$(PackagingDestination)\$(PackageFolder)\content"/>
+    <MakeDir  Directories="$(PackagingDestination)\$(PackageFolder)\content\Content"/>
+    <MakeDir  Directories="$(PackagingDestination)\$(PackageFolder)\content\fonts"/>
+    <MakeDir  Directories="$(PackagingDestination)\$(PackageFolder)\content\Scripts"/>
+
+    <Copy SourceFiles="@(CSSFiles)" DestinationFolder="$(PackagingDestination)\$(PackageFolder)\content\Content\%(RecursiveDir)" />
+    <Copy SourceFiles="@(FontFiles)" DestinationFolder="$(PackagingDestination)\$(PackageFolder)\content\fonts\%(RecursiveDir)" />
+    <Copy SourceFiles="@(ScriptFiles)" DestinationFolder="$(PackagingDestination)\$(PackageFolder)\content\Scripts\%(RecursiveDir)" />
+
+    <!--<Exec WorkingDirectory="$(PackagingDestination)\$(PackageFolder)"
+          Command="$(NugetExe)\nuget.exe pack $(PackagingDestination)\$(PackageFolder)\$(ProjectName).$(BuildVersion).nuspec" />-->
+    
+  </Target>
+</Project>

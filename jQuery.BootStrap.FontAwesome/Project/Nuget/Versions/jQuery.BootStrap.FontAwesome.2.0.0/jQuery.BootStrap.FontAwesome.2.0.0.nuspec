@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>jQuery.BootStrap.FontAwesome</id>
+    <version>2.0.0</version>
+    <title>jQuery.BootStrap.FontAwesome Combined</title>
+    <authors>Pinal Bhatt[PBDesk.com]</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>jQuery.BootStrap.FontAwesome Combined. (Includes original and minified bundled  jQuery.2.0.3, bootstrap.3.0.1 &amp; FontAwesome.4.0.3 )</description>
+    <summary>jQuery.BootStrap.FontAwesome Combined. (Includes original and minified bundled  jQuery.2.0.3, bootstrap.3.0.1 &amp; FontAwesome.4.0.3 )</summary>
+    <releaseNotes>Includes original and minified bundled  jQuery.2.0.3, bootstrap.3.0.1 &amp; FontAwesome.4.0.3</releaseNotes>
+    <dependencies>
+      <dependency id="jQuery" version="2.0.3" />
+      <dependency id="Twitter.Bootstrap" version="3.0.1.1" />
+      <dependency id="FontAwesome" version="4.0.3" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="content\Content\Bootstrap.FontAwsome.css" target="content\Content\Bootstrap.FontAwsome.css" />
+    <file src="content\Content\Bootstrap.FontAwsome.min.css" target="content\Content\Bootstrap.FontAwsome.min.css" />
+    <file src="content\fonts\fontawesome-webfont.eot" target="content\fonts\fontawesome-webfont.eot" />
+    <file src="content\fonts\fontawesome-webfont.svg" target="content\fonts\fontawesome-webfont.svg" />
+    <file src="content\fonts\fontawesome-webfont.ttf" target="content\fonts\fontawesome-webfont.ttf" />
+    <file src="content\fonts\fontawesome-webfont.woff" target="content\fonts\fontawesome-webfont.woff" />
+    <file src="content\fonts\FontAwesome.otf" target="content\fonts\FontAwesome.otf" />
+    <file src="content\fonts\glyphicons-halflings-regular.eot" target="content\fonts\glyphicons-halflings-regular.eot" />
+    <file src="content\fonts\glyphicons-halflings-regular.svg" target="content\fonts\glyphicons-halflings-regular.svg" />
+    <file src="content\fonts\glyphicons-halflings-regular.ttf" target="content\fonts\glyphicons-halflings-regular.ttf" />
+    <file src="content\fonts\glyphicons-halflings-regular.woff" target="content\fonts\glyphicons-halflings-regular.woff" />
+    <file src="content\Scripts\jQuery.Bootstrap.js" target="content\Scripts\jQuery.Bootstrap.js" />
+    <file src="content\Scripts\jQuery.Bootstrap.min.js" target="content\Scripts\jQuery.Bootstrap.min.js" />
+  </files>
+</package>

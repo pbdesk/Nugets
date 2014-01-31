@@ -1,9 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jQuery.BootStrap.FontAwesome", "jQuery.BootStrap.FontAwesome\jQuery.BootStrap.FontAwesome.csproj", "{F7E2887D-75D4-479C-B5BA-5D99BF7F05A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7F5AAD2B-8EA0-462A-ACFA-F9BD95B8C545}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{4B50A16A-68F6-416B-AAB0-11AF72E0928E}"
+	ProjectSection(SolutionItems) = preProject
+		Nuget\jQuery.BootStrap.FontAwesome.nuspec = Nuget\jQuery.BootStrap.FontAwesome.nuspec
+		Nuget\Make.bat = Nuget\Make.bat
+		Nuget\Nuget.MSBuild = Nuget\Nuget.MSBuild
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
