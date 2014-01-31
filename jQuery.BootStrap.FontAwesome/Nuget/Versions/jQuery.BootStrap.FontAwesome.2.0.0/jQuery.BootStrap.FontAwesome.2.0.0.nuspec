@@ -6,14 +6,9 @@
     <title>jQuery.BootStrap.FontAwesome Combined</title>
     <authors>Pinal Bhatt[PBDesk.com]</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>jQuery.BootStrap.FontAwesome Combined. (Includes original and minified bundled  jQuery.2.0.3, bootstrap.3.0.1 &amp; FontAwesome.4.0.3 )</description>
-    <summary>jQuery.BootStrap.FontAwesome Combined. (Includes original and minified bundled  jQuery.2.0.3, bootstrap.3.0.1 &amp; FontAwesome.4.0.3 )</summary>
-    <releaseNotes>Includes original and minified bundled  jQuery.2.0.3, bootstrap.3.0.1 &amp; FontAwesome.4.0.3</releaseNotes>
-    <dependencies>
-      <dependency id="jQuery" version="2.0.3" />
-      <dependency id="Twitter.Bootstrap" version="3.0.1.1" />
-      <dependency id="FontAwesome" version="4.0.3" />
-    </dependencies>
+    <description>jQuery.BootStrap.FontAwesome Combined.(Includes bundled, original and minified jQuery-2.1.0, bootstrap-3.1.0 &amp; FontAwesome-4.0.3)</description>
+    <summary>jQuery.BootStrap.FontAwesome Combined.(Includes bundled, original and minified jQuery-2.1.0, bootstrap-3.1.0 &amp; FontAwesome-4.0.3)</summary>
+    <releaseNotes>Includes bundled, original and minified jQuery-2.1.0, bootstrap-3.1.0 &amp; FontAwesome-4.0.3</releaseNotes>
   </metadata>
   <files>
     <file src="content\Content\Bootstrap.FontAwsome.css" target="content\Content\Bootstrap.FontAwsome.css" />
