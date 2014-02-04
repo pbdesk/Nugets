@@ -10,7 +10,7 @@
     <BuildNumber>0</BuildNumber>
 		<BuildVersion>$(MajorVersion).$(MinorVersion).$(BuildNumber)</BuildVersion>
 		<PackageFolder>$(ProjectName).$(BuildVersion)</PackageFolder>
-    <NugetExe>$(BaseFolder)\..\..\.nuget</NugetExe>
+    <NugetExe>$(BaseFolder)\..\..\NugetExe</NugetExe>
 		<MSBuildExtensionPack>$(BaseFolder)\..\..\MSBuild.ExtensionPack.4.0.8.0</MSBuildExtensionPack>
     <CSProjFolder>$(BaseFolder)\..\$(ProjectName)\</CSProjFolder>
     <PackageTitle>jQuery.BootStrap.FontAwesome Combined</PackageTitle>
