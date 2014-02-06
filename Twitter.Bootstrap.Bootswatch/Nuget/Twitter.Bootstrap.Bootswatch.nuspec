@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Twitter.Bootstrap.Bootswatch.Cerulean</id>
-        <version>3.0.0.0</version>
+        <version>A.B.C.D</version>
         <title>Twitter Bootstrap Bootswatch Themes - Cerulean (only CSS)</title>
         <authors>Pinal Bhatt (Theme created by Thomas Park[hello@thomaspark.me.])</authors>
         <projectUrl>http://bootswatch.com/</projectUrl>
