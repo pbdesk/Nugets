@@ -17,16 +17,9 @@
     <PackageVersion>$(BootstrapVersion).$(BuildNumber)</PackageVersion>
     
     <MasterPackageFolder>$(PackagingDestination)\$(PackageVersion)</MasterPackageFolder>
-    
 
-    
-    
-    
-    
-    
-    
-    <NugetExe>$(BaseFolder)\..\..\NugetExe</NugetExe>
-		<MSBuildExtensionPack>$(BaseFolder)\..\..\MSBuild.ExtensionPack.4.0.8.0</MSBuildExtensionPack>
+    <NugetExe>$(BaseFolder)\..\NugetExe</NugetExe>
+		<MSBuildExtensionPack>$(BaseFolder)\..\MSBuild.ExtensionPack.4.0.8.0</MSBuildExtensionPack>
     
     
     <PackageTitle>jQuery.BootStrap.FontAwesome Combined</PackageTitle>
