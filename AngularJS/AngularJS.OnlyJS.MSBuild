@@ -17,10 +17,13 @@
 		<MSBuildExtensionPack>$(BaseFolder)\..\MSBuild.ExtensionPack.4.0.8.0</MSBuildExtensionPack>
     
     
-    <PackageTitle>AngularJS $(AngularVersion) Bundled &amp; Minified</PackageTitle>
+    
     <baseNuspecFile>$(BaseFolder)\$(ProjectName).nuspec</baseNuspecFile>
     <nuspecFile>$(PackageFolder)\$(ProjectName).$(PackageVersion).nuspec</nuspecFile>
-    <PackageDesc>Based on AngularJS $(AngularVersion). Bundled &amp; Minified .js File.</PackageDesc>
+    
+    
+    <PackageTitle>AngularJS $(AngularVersion) OnlyJS</PackageTitle>
+    <PackageDesc>Based on AngularJS $(AngularVersion). Only JS files. Includes minified files. Excludes i18n files.</PackageDesc>
     
 	</PropertyGroup>
   
