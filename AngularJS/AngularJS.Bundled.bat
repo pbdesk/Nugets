@@ -1,0 +1,1 @@
+msbuild AngularJS.Bundled.MSBuild  @params.rsp

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+      <JSFiles Include="angular;angular-animate;angular-cookies;angular-loader;angular-resource;angular-route;angular-sanitize;angular-touch" />
+  </ItemGroup>
+	<PropertyGroup>
+    <BaseFolder>$(MSBuildProjectDirectory)</BaseFolder>   
+    <PackagingDestination>$(BaseFolder)\Packages</PackagingDestination>    
+    <ProjectName>AngularJS.Bundled</ProjectName>
+
+    <AngularVersion>A.B.C</AngularVersion>
+    <BuildNumber>0</BuildNumber>
+    <PackageVersion>$(AngularVersion).$(BuildNumber)</PackageVersion>
+    
+    <SourceFilesLoc>$(BaseFolder)\Source</SourceFilesLoc> 
+    <PackageFolder>$(PackagingDestination)\$(PackageVersion)</PackageFolder>
+
+    <NugetExe>$(BaseFolder)\..\NugetExe</NugetExe>
+		<MSBuildExtensionPack>$(BaseFolder)\..\MSBuild.ExtensionPack.4.0.8.0</MSBuildExtensionPack>
+    
+    
+    <PackageTitle>AngularJS $(AngularVersion) OnlyJS</PackageTitle>
+    <baseNuspecFile>$(BaseFolder)\$(ProjectName).nuspec</baseNuspecFile>
+    <nuspecFile>$(PackageFolder)\$(ProjectName).$(PackageVersion).nuspec</nuspecFile>
+    <PackageDesc>Based on AngularJS $(AngularVersion). Only JS files. Includes minified files. Excludes i18n files.</PackageDesc>
+    
+	</PropertyGroup>
+  
+  <Import Project="$(MSBuildExtensionPack)\MSBuild.ExtensionPack.tasks"/>
+    
+  <Target Name="Publish">
+    <!-- Publish the nupkg to the well known NuGet server 
+          Note: "nuget setApiKey {put-your-api-key-here} -Source http://My_Nuget_Gallery_Service_Url/" must be run prior on the machine to ensure the api key is set correctly. -->
+    <Exec WorkingDirectory="$(MasterPackageFolder)" 
+          Command="NuGet.exe push $(ProjectName).%(Themes.Identity).$(PackageVersion).nupkg -source https://www.nuget.org/" />
+  </Target>
+  
+  
+  <Target  Name="Build" DependsOnTargets="CreateFolderStructure">
+    
+    <Exec WorkingDirectory="$(PackageFolder)"
+          Command="$(NugetExe)\nuget.exe pack $(nuspecFile)" />
+
+  </Target>
+  
+  <Target Name="ShowMessages">
+
+
+  </Target>
+  
+  <Target Name="CreateFolderStructure">
+    <ItemGroup>
+      <namespaces Include="MyNamespace">
+        <Prefix>DefaultNS</Prefix>
+        <Uri>http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd</Uri>
+      </namespaces>
+      
+      <SourceFiles Include="$(SourceFilesLoc)\*.*"></SourceFiles>      
+    </ItemGroup>
+
+    <CreateItem Include="$(SourceFilesLoc)\%(JSFiles.Identity).min.js">
+      <Output TaskParameter="Include" ItemName="jsFilesToCombine" />
+    </CreateItem>
+    
+    <Message Text="$(nuspecFile)" />
+    <MakeDir  Directories="$(PackageFolder)"/>
+    <MakeDir  Directories="$(PackageFolder)\content"/>
+    <MakeDir  Directories="$(PackageFolder)\content\scripts"/>
+
+    <!--<MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" 
+                                         Url="https://ajax.googleapis.com/ajax/libs/angularjs/$(AngularVersion)/%(JSFiles.Identity).min.js" 
+                                         FileName="$(PackageFolder)\content\scripts\%(JSFiles.Identity).min.js"/>-->
+
+
+    <Copy SourceFiles="$(baseNuspecFile)" DestinationFiles="$(nuspecFile)" />
+    <Message Text="Copy completed" />
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:version"
+                                       InnerText="$(PackageVersion)"/>
+  
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:id"
+                                       InnerText="$(ProjectName)"/>
+  
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:title"
+                                       InnerText="$(PackageTitle)"/>
+  
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:description"
+                                       InnerText="$(PackageDesc)"/>
+  
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:releaseNotes"
+                                       InnerText="Bundled &amp; Minified for AngularJS Version $(AngularVersion)"/>
+
+
+    <Message Text="%(jsFilesToCombine.FullPath)" />
+    <ReadLinesFromFile File="%(jsFilesToCombine.FullPath)">
+      <Output TaskParameter="Lines" ItemName="jsLines" />
+    </ReadLinesFromFile>
+
+    <WriteLinesToFile File="$(PackageFolder)\content\scripts\angular.bundled.min.js" Lines="@(jsLines)" Overwrite="true" />
+    
+                                       
+  </Target>
+
+
+  <Target Name="CombineJS">
+    
+
+    <ReadLinesFromFile File="@(jsFilesToCombine)">
+      <Output TaskParameter="Lines" ItemName="jsLines" />
+    </ReadLinesFromFile>
+
+    <WriteLinesToFile File="all.js" Lines="@(jsLines)" Overwrite="true" />
+  </Target>
+  
+  <Target Name="DownloadFiles">
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="http://bootswatch.com/%(LThemes.Identity)/bootstrap.css" FileName="$(MasterPackageFolder)\%(LThemes.Identity)\content\Content\bootstrap.%(LThemes.Identity).css"/>
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="http://bootswatch.com/%(LThemes.Identity)/bootstrap.min.css" FileName="$(MasterPackageFolder)\%(LThemes.Identity)\content\Content\bootstrap.%(LThemes.Identity).min.css"/>    
+  </Target>
+
+</Project>
