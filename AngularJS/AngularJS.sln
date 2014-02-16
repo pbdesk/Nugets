@@ -5,60 +5,16 @@ VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildFiles", "BuildFiles", "{70F4CCA3-7702-45AB-9CE4-DEDF3DF1124A}"
 	ProjectSection(SolutionItems) = preProject
+		AngularJS.MSBuild = AngularJS.MSBuild
+		make.bat = make.bat
 		params.rsp = params.rsp
 		publish.bat = publish.bat
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{AE57406E-6A32-41ED-9E80-372998B8EC6A}"
-	ProjectSection(SolutionItems) = preProject
-		Source\angular-animate.js = Source\angular-animate.js
-		Source\angular-animate.min.js = Source\angular-animate.min.js
-		Source\angular-animate.min.js.map = Source\angular-animate.min.js.map
-		Source\angular-cookies.js = Source\angular-cookies.js
-		Source\angular-cookies.min.js = Source\angular-cookies.min.js
-		Source\angular-cookies.min.js.map = Source\angular-cookies.min.js.map
-		Source\angular-loader.js = Source\angular-loader.js
-		Source\angular-loader.min.js = Source\angular-loader.min.js
-		Source\angular-loader.min.js.map = Source\angular-loader.min.js.map
-		Source\angular-mocks.js = Source\angular-mocks.js
-		Source\angular-resource.js = Source\angular-resource.js
-		Source\angular-resource.min.js = Source\angular-resource.min.js
-		Source\angular-resource.min.js.map = Source\angular-resource.min.js.map
-		Source\angular-route.js = Source\angular-route.js
-		Source\angular-route.min.js = Source\angular-route.min.js
-		Source\angular-route.min.js.map = Source\angular-route.min.js.map
-		Source\angular-sanitize.js = Source\angular-sanitize.js
-		Source\angular-sanitize.min.js = Source\angular-sanitize.min.js
-		Source\angular-sanitize.min.js.map = Source\angular-sanitize.min.js.map
-		Source\angular-scenario.js = Source\angular-scenario.js
-		Source\angular-touch.js = Source\angular-touch.js
-		Source\angular-touch.min.js = Source\angular-touch.min.js
-		Source\angular-touch.min.js.map = Source\angular-touch.min.js.map
-		Source\angular.js = Source\angular.js
-		Source\angular.min.js = Source\angular.min.js
-		Source\angular.min.js.map = Source\angular.min.js.map
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AngularJS.Bundled", "AngularJS.Bundled", "{4073581E-C90B-476D-876D-D2C18FFA868A}"
-	ProjectSection(SolutionItems) = preProject
-		AngularJS.Bundled.bat = AngularJS.Bundled.bat
-		AngularJS.Bundled.MSBuild = AngularJS.Bundled.MSBuild
-		AngularJS.Bundled.nuspec = AngularJS.Bundled.nuspec
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AngularJS.OnlyJS", "AngularJS.OnlyJS", "{B96F3CEF-DF58-4ADF-9F1A-84DBA3DE35FB}"
-	ProjectSection(SolutionItems) = preProject
-		AngularJS.OnlyJS.bat = AngularJS.OnlyJS.bat
-		AngularJS.OnlyJS.MSBuild = AngularJS.OnlyJS.MSBuild
-		AngularJS.OnlyJS.nuspec = AngularJS.OnlyJS.nuspec
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{4073581E-C90B-476D-876D-D2C18FFA868A} = {70F4CCA3-7702-45AB-9CE4-DEDF3DF1124A}
-		{B96F3CEF-DF58-4ADF-9F1A-84DBA3DE35FB} = {70F4CCA3-7702-45AB-9CE4-DEDF3DF1124A}
 	EndGlobalSection
 EndGlobal

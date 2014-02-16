@@ -1,0 +1,1 @@
+msbuild AngularJS.MSBuild  @params.rsp
