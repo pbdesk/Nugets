@@ -88,6 +88,9 @@
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
     <None Include="Scripts\jQuery.Bootstrap.js.bundle" />
+    <Content Include="Scripts\jQuery.Bootstrap.min.js.map">
+      <DependentUpon>jQuery.Bootstrap.min.js</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
