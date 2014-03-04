@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30219.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildFiles", "BuildFiles", "{70F4CCA3-7702-45AB-9CE4-DEDF3DF1124A}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildFiles", "BuildFiles", 
 		params.rsp = params.rsp
 		publish.bat = publish.bat
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{AE57406E-6A32-41ED-9E80-372998B8EC6A}"
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
