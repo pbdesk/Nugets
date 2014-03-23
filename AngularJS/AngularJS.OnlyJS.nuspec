@@ -22,32 +22,32 @@
         <file src="content\scripts\angular.min.js" target="content\scripts\angular.min.js" />
         <file src="content\scripts\angular.min.js.map" target="content\scripts\angular.min.js.map" />
 
-      <file src="content\scripts\angular.js" target="content\scripts\angular-animate.js" />
-      <file src="content\scripts\angular.min.js" target="content\scripts\angular-animate.min.js" />
-      <file src="content\scripts\angular.min.js.map" target="content\scripts\angular-animate.min.js.map" />
+      <file src="content\scripts\angular-animate.js" target="content\scripts\angular-animate.js" />
+      <file src="content\scripts\angular-animate.min.js" target="content\scripts\angular-animate.min.js" />
+      <file src="content\scripts\angular-animate.min.js.map" target="content\scripts\angular-animate.min.js.map" />
 
-      <file src="content\scripts\angular.js" target="content\scripts\angular-cookies.js" />
-      <file src="content\scripts\angular.min.js" target="content\scripts\angular-cookies.min.js" />
-      <file src="content\scripts\angular.min.js.map" target="content\scripts\angular-cookies.min.js.map" />
+      <file src="content\scripts\angular-cookies.js" target="content\scripts\angular-cookies.js" />
+      <file src="content\scripts\angular-cookies.min.js" target="content\scripts\angular-cookies.min.js" />
+      <file src="content\scripts\angular-cookies.min.js.map" target="content\scripts\angular-cookies.min.js.map" />
 
-      <file src="content\scripts\angular.js" target="content\scripts\angular-loader.js" />
-      <file src="content\scripts\angular.min.js" target="content\scripts\angular-loader.min.js" />
-      <file src="content\scripts\angular.min.js.map" target="content\scripts\angular-loader.min.js.map" />
+      <file src="content\scripts\angular-loader.js" target="content\scripts\angular-loader.js" />
+      <file src="content\scripts\angular-loader.min.js" target="content\scripts\angular-loader.min.js" />
+      <file src="content\scripts\angular-loader.min.js.map" target="content\scripts\angular-loader.min.js.map" />
 
-      <file src="content\scripts\angular.js" target="content\scripts\angular-resource.js" />
-      <file src="content\scripts\angular.min.js" target="content\scripts\angular-resource.min.js" />
-      <file src="content\scripts\angular.min.js.map" target="content\scripts\angular-resource.min.js.map" />
+      <file src="content\scripts\angular-resource.js" target="content\scripts\angular-resource.js" />
+      <file src="content\scripts\angular-resource.min.js" target="content\scripts\angular-resource.min.js" />
+      <file src="content\scripts\angular-resource.min.js.map" target="content\scripts\angular-resource.min.js.map" />
 
-      <file src="content\scripts\angular.js" target="content\scripts\angular-route.js" />
-      <file src="content\scripts\angular.min.js" target="content\scripts\angular-route.min.js" />
-      <file src="content\scripts\angular.min.js.map" target="content\scripts\angular-route.min.js.map" />
+      <file src="content\scripts\angular-route.js" target="content\scripts\angular-route.js" />
+      <file src="content\scripts\angular-route.min.js" target="content\scripts\angular-route.min.js" />
+      <file src="content\scripts\angular-route.min.js.map" target="content\scripts\angular-route.min.js.map" />
 
-      <file src="content\scripts\angular.js" target="content\scripts\angular-sanitize.js" />
-      <file src="content\scripts\angular.min.js" target="content\scripts\angular-sanitize.min.js" />
-      <file src="content\scripts\angular.min.js.map" target="content\scripts\angular-sanitize.min.js.map" />
+      <file src="content\scripts\angular-sanitize.js" target="content\scripts\angular-sanitize.js" />
+      <file src="content\scripts\angular-sanitize.min.js" target="content\scripts\angular-sanitize.min.js" />
+      <file src="content\scripts\angular-sanitize.min.js.map" target="content\scripts\angular-sanitize.min.js.map" />
 
-      <file src="content\scripts\angular.js" target="content\scripts\angular-touch.js" />
-      <file src="content\scripts\angular.min.js" target="content\scripts\angular-touch.min.js" />
-      <file src="content\scripts\angular.min.js.map" target="content\scripts\angular-touch.min.js.map" />
+      <file src="content\scripts\angular-touch.js" target="content\scripts\angular-touch.js" />
+      <file src="content\scripts\angular-touch.min.js" target="content\scripts\angular-touch.min.js" />
+      <file src="content\scripts\angular-touch.min.js.map" target="content\scripts\angular-touch.min.js.map" />
     </files>
 </package>
