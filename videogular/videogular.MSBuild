@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Themes Include="Amelia;Cerulean;Cosmo;Cyborg;Flatly;Journal;Readable;Simplex;Slate;Spacelab;United;Yeti;Lumen;Superhero;Shamrock;Darkly" />
+    <LThemes Include="amelia;cerulean;cosmo;cyborg;flatly;journal;readable;simplex;slate;spacelab;united;yeti;lumen;superhero;shamrock;darkly" />
+  </ItemGroup>
+  
+	<PropertyGroup>
+    <BaseFolder>$(MSBuildProjectDirectory)</BaseFolder>   
+    <PackagingDestination>$(BaseFolder)\Packages</PackagingDestination>
+    <ProjectName>Twitter.Bootstrap.Bootswatch</ProjectName>
+    
+
+
+    <BootstrapVersion>A.B.C</BootstrapVersion>
+    <BuildNumber>0</BuildNumber>
+    <PackageVersion>$(BootstrapVersion).$(BuildNumber)</PackageVersion>
+    
+    <MasterPackageFolder>$(PackagingDestination)\$(PackageVersion)</MasterPackageFolder>
+
+    <NugetExe>$(BaseFolder)\..\NugetExe</NugetExe>
+		<MSBuildExtensionPack>$(BaseFolder)\..\MSBuild.ExtensionPack.4.0.8.0</MSBuildExtensionPack>
+    
+    
+    <PackageTitle>jQuery.BootStrap.FontAwesome Combined</PackageTitle>
+    <BaseNuspecFile>$(BaseFolder)\$(ProjectName).nuspec</BaseNuspecFile>
+    <nuspecFile>$(PackagingDestination)\$(PackageFolder)\$(ProjectName).$(BuildVersion).nuspec</nuspecFile>
+    <jQueryVersion></jQueryVersion>
+    <bootstrapVersion></bootstrapVersion>
+    <FontAwesomeVersion></FontAwesomeVersion>
+    <PackageDesc>Includes bundled, original and minified jQuery-$(jQueryVersion), bootstrap-$(bootstrapVersion) &amp; FontAwesome-$(FontAwesomeVersion)</PackageDesc>
+	</PropertyGroup>
+  
+  <Import Project="$(MSBuildExtensionPack)\MSBuild.ExtensionPack.tasks"/>
+    
+  <Target Name="Publish">
+    <!-- Publish the nupkg to the well known NuGet server 
+          Note: "nuget setApiKey {put-your-api-key-here} -Source http://My_Nuget_Gallery_Service_Url/" must be run prior on the machine to ensure the api key is set correctly. -->
+    <Exec WorkingDirectory="$(MasterPackageFolder)\%(Themes.Identity)" 
+          Command="NuGet.exe push $(ProjectName).%(Themes.Identity).$(PackageVersion).nupkg -source https://www.nuget.org/" />
+  </Target>
+  
+  
+  <Target  Name="Build" DependsOnTargets="ShowMessages;CreateFolderStructure;DownloadFiles">
+    
+    <Exec WorkingDirectory="$(MasterPackageFolder)\%(Themes.Identity)"
+          Command="$(NugetExe)\nuget.exe pack $(ProjectName).%(Themes.Identity).$(PackageVersion).nuspec" />
+
+  </Target>
+  
+  <Target Name="ShowMessages">
+    <Message Text="MasterPackageFolder: $(MasterPackageFolder)\%(Themes.Identity)"    />
+
+    <Message Text="PackageVersion: $(PackageVersion)"    />
+    <Message Text="MasterPackageFolder: $(MasterPackageFolder)"    />
+    <Message Text="ThemePackageFolder: $(ThemePackageFolder)"    />
+
+  </Target>
+  
+  <Target Name="CreateFolderStructure">
+    <ItemGroup>
+      <namespaces Include="MyNamespace">
+        <Prefix>DefaultNS</Prefix>
+        <Uri>http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd</Uri>
+      </namespaces>      
+    </ItemGroup>
+
+    <MakeDir  Directories="$(MasterPackageFolder)"/>
+    
+    <MakeDir  Directories="$(MasterPackageFolder)\%(Themes.Identity)\content\Content"/>
+    <Copy SourceFiles="$(BaseNuspecFile)" DestinationFiles="$(MasterPackageFolder)\%(Themes.Identity)\$(ProjectName).%(Themes.Identity).$(PackageVersion).nuspec" />
+  
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(MasterPackageFolder)\%(Themes.Identity)\$(ProjectName).%(Themes.Identity).$(PackageVersion).nuspec"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:version"
+                                       InnerText="$(PackageVersion)"/>
+  
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(MasterPackageFolder)\%(Themes.Identity)\$(ProjectName).%(Themes.Identity).$(PackageVersion).nuspec"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:id"
+                                       InnerText="$(ProjectName).%(Themes.Identity)"/>
+  
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(MasterPackageFolder)\%(Themes.Identity)\$(ProjectName).%(Themes.Identity).$(PackageVersion).nuspec"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:title"
+                                       InnerText="Twitter Bootstrap Bootswatch Themes - %(Themes.Identity) (only CSS)"/>
+  
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(MasterPackageFolder)\%(Themes.Identity)\$(ProjectName).%(Themes.Identity).$(PackageVersion).nuspec"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:description"
+                                       InnerText="Free %(Themes.Identity) theme(only CSS) from bootswatch.com for Twitter Bootstrap -Sleek, intuitive, and powerful mobile-first front-end framework for faster and easier web development.  [Based on Twitter Bootstrap Version $(BootstrapVersion)]. For javascript font files use official Bootstrap package."/>
+  
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(MasterPackageFolder)\%(Themes.Identity)\$(ProjectName).%(Themes.Identity).$(PackageVersion).nuspec"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:releaseNotes"
+                                       InnerText="Based on Twitter Bootstrap Version $(BootstrapVersion). Only CSS"/>
+    
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateAttribute"
+                                       Namespaces="@(namespaces)"
+                                       File="$(MasterPackageFolder)\%(LThemes.Identity)\$(ProjectName).%(LThemes.Identity).$(PackageVersion).nuspec"
+                                       XPath="/DefaultNS:package/DefaultNS:files/DefaultNS:file[@src='content\Content\bootstrap.css']"
+                                        Key="target" Value="content\Content\bootstrap.%(LThemes.Identity).css"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateAttribute"
+                                       Namespaces="@(namespaces)"
+                                       File="$(MasterPackageFolder)\%(LThemes.Identity)\$(ProjectName).%(LThemes.Identity).$(PackageVersion).nuspec"
+                                       XPath="/DefaultNS:package/DefaultNS:files/DefaultNS:file[@src='content\Content\bootstrap.css']"
+                                        Key="src" Value="content\Content\bootstrap.%(LThemes.Identity).css"/>
+    
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateAttribute"
+                                       Namespaces="@(namespaces)"
+                                       File="$(MasterPackageFolder)\%(LThemes.Identity)\$(ProjectName).%(LThemes.Identity).$(PackageVersion).nuspec"
+                                       XPath="/DefaultNS:package/DefaultNS:files/DefaultNS:file[@src='content\Content\bootstrap.min.css']"
+                                        Key="target" Value="content\Content\bootstrap.%(LThemes.Identity).min.css"/>
+    
+     <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateAttribute"
+                                       Namespaces="@(namespaces)"
+                                       File="$(MasterPackageFolder)\%(LThemes.Identity)\$(ProjectName).%(LThemes.Identity).$(PackageVersion).nuspec"
+                                       XPath="/DefaultNS:package/DefaultNS:files/DefaultNS:file[@src='content\Content\bootstrap.min.css']"
+                                        Key="src" Value="content\Content\bootstrap.%(LThemes.Identity).min.css"/>
+                                        
+    
+                                       
+  </Target>
+  
+  <Target Name="DownloadFiles">
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="http://bootswatch.com/%(LThemes.Identity)/bootstrap.css" FileName="$(MasterPackageFolder)\%(LThemes.Identity)\content\Content\bootstrap.%(LThemes.Identity).css"/>
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="http://bootswatch.com/%(LThemes.Identity)/bootstrap.min.css" FileName="$(MasterPackageFolder)\%(LThemes.Identity)\content\Content\bootstrap.%(LThemes.Identity).min.css"/>    
+  </Target>
+
+</Project>
