@@ -1,53 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>AngularJS.OnlyJS</id>
+        <id>videogular.themes.default</id>
         <version>ABC</version>
-        <title>AngularJS {version} OnlyJS</title>
-        <authors>AngularJS Team(http://angularjs.org)</authors>
-        <owners>Pinal  Bhatt [PBDesk]</owners>
-        <projectUrl>http://angularjs.org</projectUrl>
-        <iconUrl>https://secure.gravatar.com/avatar/6e1b5ab3ef1593413f1bee4e5a6e6ae7?s=140&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png</iconUrl>
+        <title>videogular.themes.default</title>
+      <authors>2fdevs(https://github.com/2fdevs/videogular)</authors>
+      <owners>Pinal  Bhatt [PBDesk]</owners>
+      <projectUrl>http://www.videogular.com/</projectUrl>
+      <iconUrl>https://raw.githubusercontent.com/2fdevs/videogular/master/app/favicon.ico</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Based on AngularJS {version}. Only JS files. Includes minified files. Excludes i18n files.</description>
-        <summary>AngularJS. HTML enhanced for web apps!AngularJS.Core contains the core Angular files and the angular.mocks for unit testing.</summary>
+        <description>ABC</description>
+        <summary>Default theme for videogular from 2fdevs. Videogular is an HTML5 video player for AngularJS.</summary>
         <releaseNotes>Updated for {version}</releaseNotes>
         <language>en-US</language>
-        <tags>angular angularjs</tags>
+        <tags>angular angularjs videogular html5 video videogular-theme</tags>
+      <dependencies>
+        <dependency id="videogular.core" version="0.3.1" />
+      </dependencies>
     </metadata>
     <files>
-        <file src="content\scripts\angular-mocks.js" target="content\scripts\angular-mocks.js" />
+        <file src="content\Content\videogular.css" target="content\Content\videogular.css" />
+
+      <file src="content\Content\fonts\icomoon.dev.svg" target="content\Content\fonts\icomoon.dev.svg" />
+      <file src="content\Content\fonts\icomoon.eot" target="content\Content\fonts\icomoon.eot" />
+      <file src="content\Content\fonts\icomoon.svg" target="content\Content\fonts\icomoon.svg" />
+      <file src="content\Content\fonts\icomoon.ttf" target="content\Content\fonts\icomoon.ttf" />
+      <file src="content\Content\fonts\icomoon.woff" target="content\Content\fonts\icomoon.woff" />
       
-        <file src="content\scripts\angular.js" target="content\scripts\angular.js" />
-        <file src="content\scripts\angular.min.js" target="content\scripts\angular.min.js" />
-        <file src="content\scripts\angular.min.js.map" target="content\scripts\angular.min.js.map" />
-
-      <file src="content\scripts\angular.js" target="content\scripts\angular-animate.js" />
-      <file src="content\scripts\angular.min.js" target="content\scripts\angular-animate.min.js" />
-      <file src="content\scripts\angular.min.js.map" target="content\scripts\angular-animate.min.js.map" />
-
-      <file src="content\scripts\angular.js" target="content\scripts\angular-cookies.js" />
-      <file src="content\scripts\angular.min.js" target="content\scripts\angular-cookies.min.js" />
-      <file src="content\scripts\angular.min.js.map" target="content\scripts\angular-cookies.min.js.map" />
-
-      <file src="content\scripts\angular.js" target="content\scripts\angular-loader.js" />
-      <file src="content\scripts\angular.min.js" target="content\scripts\angular-loader.min.js" />
-      <file src="content\scripts\angular.min.js.map" target="content\scripts\angular-loader.min.js.map" />
-
-      <file src="content\scripts\angular.js" target="content\scripts\angular-resource.js" />
-      <file src="content\scripts\angular.min.js" target="content\scripts\angular-resource.min.js" />
-      <file src="content\scripts\angular.min.js.map" target="content\scripts\angular-resource.min.js.map" />
-
-      <file src="content\scripts\angular.js" target="content\scripts\angular-route.js" />
-      <file src="content\scripts\angular.min.js" target="content\scripts\angular-route.min.js" />
-      <file src="content\scripts\angular.min.js.map" target="content\scripts\angular-route.min.js.map" />
-
-      <file src="content\scripts\angular.js" target="content\scripts\angular-sanitize.js" />
-      <file src="content\scripts\angular.min.js" target="content\scripts\angular-sanitize.min.js" />
-      <file src="content\scripts\angular.min.js.map" target="content\scripts\angular-sanitize.min.js.map" />
-
-      <file src="content\scripts\angular.js" target="content\scripts\angular-touch.js" />
-      <file src="content\scripts\angular.min.js" target="content\scripts\angular-touch.min.js" />
-      <file src="content\scripts\angular.min.js.map" target="content\scripts\angular-touch.min.js.map" />
     </files>
 </package>
