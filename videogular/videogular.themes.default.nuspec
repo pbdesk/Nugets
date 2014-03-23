@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>videogular.themes.default</id>
+        <version>ABC</version>
+        <title>videogular.themes.default</title>
+      <authors>2fdevs(https://github.com/2fdevs/videogular)</authors>
+      <owners>Pinal  Bhatt [PBDesk]</owners>
+      <projectUrl>http://www.videogular.com/</projectUrl>
+      <iconUrl>https://raw.githubusercontent.com/2fdevs/videogular/master/app/favicon.ico</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>ABC</description>
+        <summary>Default theme for videogular from 2fdevs. Videogular is an HTML5 video player for AngularJS.</summary>
+        <releaseNotes>Updated for {version}</releaseNotes>
+        <language>en-US</language>
+        <tags>angular angularjs videogular html5 video videogular-theme</tags>
+      <dependencies>
+        <dependency id="videogular.core" version="0.3.1" />
+      </dependencies>
+    </metadata>
+    <files>
+        <file src="content\Content\videogular.css" target="content\Content\videogular.css" />
+
+      <file src="content\Content\fonts\icomoon.dev.svg" target="content\Content\fonts\icomoon.dev.svg" />
+      <file src="content\Content\fonts\icomoon.eot" target="content\Content\fonts\icomoon.eot" />
+      <file src="content\Content\fonts\icomoon.svg" target="content\Content\fonts\icomoon.svg" />
+      <file src="content\Content\fonts\icomoon.ttf" target="content\Content\fonts\icomoon.ttf" />
+      <file src="content\Content\fonts\icomoon.woff" target="content\Content\fonts\icomoon.woff" />
+      
+    </files>
+</package>

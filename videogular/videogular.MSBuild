@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+
+	<PropertyGroup>
+    <BaseFolder>$(MSBuildProjectDirectory)</BaseFolder>   
+    <PackagingDestination>$(BaseFolder)\Packages</PackagingDestination>    
+    <Project1Name>videogular.core</Project1Name>
+    <Project2Name>videogular.2fdevs.plugins</Project2Name>
+    <Project3Name>videogular.themes.default</Project3Name>
+    <Project4Name>videogular.complete</Project4Name>
+
+    <AngularVersion>A.B.C</AngularVersion>
+    <VideogularVersion>A.B.C</VideogularVersion>
+    <BuildNumber>0</BuildNumber>
+    
+    <PackageVersion>$(VideogularVersion).$(BuildNumber)</PackageVersion>
+    
+    <PackageFolder>$(PackagingDestination)\$(PackageVersion)</PackageFolder>
+    <ContentFolder>$(PackageFolder)\content</ContentFolder>
+    <ScriptsFolder>$(ContentFolder)\scripts</ScriptsFolder>
+    <StylesFolder>$(ContentFolder)\Content</StylesFolder>
+    
+    
+    <NugetExe>$(BaseFolder)\..\NugetExe</NugetExe>
+		<MSBuildExtensionPack>$(BaseFolder)\..\MSBuild.ExtensionPack.4.0.8.0</MSBuildExtensionPack>
+    <DownloadBasePath>https://raw.githubusercontent.com/2fdevs</DownloadBasePath>
+    
+    
+    <basenuspecFile1>$(BaseFolder)\$(Project1Name).nuspec</basenuspecFile1>
+    <basenuspecFile2>$(BaseFolder)\$(Project2Name).nuspec</basenuspecFile2>
+    <basenuspecFile3>$(BaseFolder)\$(Project3Name).nuspec</basenuspecFile3>
+    <basenuspecFile4>$(BaseFolder)\$(Project4Name).nuspec</basenuspecFile4>
+    
+    <nuspecFile1>$(PackageFolder)\$(Project1Name).$(PackageVersion).nuspec</nuspecFile1>
+    <nuspecFile2>$(PackageFolder)\$(Project2Name).$(PackageVersion).nuspec</nuspecFile2>
+    <nuspecFile3>$(PackageFolder)\$(Project3Name).$(PackageVersion).nuspec</nuspecFile3>
+    <nuspecFile4>$(PackageFolder)\$(Project4Name).$(PackageVersion).nuspec</nuspecFile4>
+
+    <nuspecPkgFile1>$(PackageFolder)\$(Project1Name).$(PackageVersion).nupkg</nuspecPkgFile1>
+    <nuspecPkgFile2>$(PackageFolder)\$(Project2Name).$(PackageVersion).nupkg</nuspecPkgFile2>
+    <nuspecPkgFile3>$(PackageFolder)\$(Project3Name).$(PackageVersion).nupkg</nuspecPkgFile3>
+    <nuspecPkgFile4>$(PackageFolder)\$(Project4Name).$(PackageVersion).nupkg</nuspecPkgFile4>
+    
+    <!--<Package1Title>$(Project1Name) $(VideogularVersion)</Package1Title>
+    <Package2Title>$(Project2Name) $(VideogularVersion)</Package2Title>
+    <Package3Title>$(Project3Name) $(VideogularVersion)</Package3Title>
+    <Package4Title>$(Project4Name) $(VideogularVersion)</Package4Title>-->
+    
+    <Package1Desc>Based on videogular $(VideogularVersion). Videogular is an HTML5 video player for AngularJS.</Package1Desc>
+    <Package2Desc>Plugins for videogular $(VideogularVersion) from 2fdevs. Videogular is an HTML5 video player for AngularJS.</Package2Desc>
+    <Package3Desc>Default Theme for videogular $(VideogularVersion) from 2fdevs. Videogular is an HTML5 video player for AngularJS.</Package3Desc>
+    <Package4Desc>Based on videogular $(VideogularVersion). Complete package including core lib with plugins and default theme from 2fdevs. Videogular is an HTML5 video player for AngularJS.</Package4Desc>
+    
+	</PropertyGroup>
+  
+  <Import Project="$(MSBuildExtensionPack)\MSBuild.ExtensionPack.tasks"/>
+    
+  <Target Name="Publish">
+    <!-- Publish the nupkg to the well known NuGet server 
+          Note: "nuget setApiKey {put-your-api-key-here} -Source http://My_Nuget_Gallery_Service_Url/" must be run prior on the machine to ensure the api key is set correctly. -->
+    <Exec WorkingDirectory="$(PackageFolder)" 
+          Command="$(NugetExe)\NuGet.exe push $(nuspecPkgFile1) -source https://www.nuget.org/" />
+
+    <Exec WorkingDirectory="$(PackageFolder)"
+          Command="$(NugetExe)\NuGet.exe push $(nuspecPkgFile2) -source https://www.nuget.org/" />
+  </Target>
+  
+  
+  <Target  Name="Build" DependsOnTargets="CreateFolderStructure">
+    
+    <Exec WorkingDirectory="$(PackageFolder)"
+          Command="$(NugetExe)\nuget.exe pack $(nuspecFile1)" />
+    <Exec WorkingDirectory="$(PackageFolder)"
+          Command="$(NugetExe)\nuget.exe pack $(nuspecFile2)" />
+    <Exec WorkingDirectory="$(PackageFolder)"
+          Command="$(NugetExe)\nuget.exe pack $(nuspecFile3)" />
+    <Exec WorkingDirectory="$(PackageFolder)"
+          Command="$(NugetExe)\nuget.exe pack $(nuspecFile4)" />
+
+    <!-- <CallTarget Targets="CombineJS" />
+
+    <Exec WorkingDirectory="$(PackageFolder)"
+          Command="$(NugetExe)\nuget.exe pack $(nuspecFile2)" />-->
+
+  </Target>
+  
+  <Target Name="ShowMessages">
+
+
+  </Target>
+  
+  <Target Name="CreateFolderStructure">
+    
+
+    <Message Text="Creating Folder Structure" Importance="high"/>
+    
+    <MakeDir  Directories="$(PackageFolder)"/>
+    <MakeDir  Directories="$(ContentFolder)"/>
+    <MakeDir  Directories="$(ScriptsFolder)"/>
+    <MakeDir  Directories="$(StylesFolder)"/>
+    <MakeDir  Directories="$(StylesFolder)\fonts"/>
+
+    <Message Text="Downloading AngularJS files from Github" Importance="high"/>
+    <CallTarget Targets="DownloadFiles" />
+    
+    <!--<Copy SourceFiles="@(SourceFiles)" DestinationFolder="$(PackageFolder)\content\scripts\%(RecursiveDir)" />-->
+
+    <Message Text="Copying Base .nuspec files" Importance="high"/>
+    <Copy SourceFiles="$(basenuspecFile1)" DestinationFiles="$(nuspecFile1)" />
+    <Copy SourceFiles="$(basenuspecFile2)" DestinationFiles="$(nuspecFile2)" />
+    <Copy SourceFiles="$(basenuspecFile3)" DestinationFiles="$(nuspecFile3)" />
+    <Copy SourceFiles="$(basenuspecFile4)" DestinationFiles="$(nuspecFile4)" />
+
+    <CallTarget Targets="UpdateNuspecFiles" />
+                                  
+  </Target>
+
+
+  
+
+  <Target Name="DownloadFiles">
+
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular/master/videogular.min.js" FileName="$(ScriptsFolder)\videogular.min.js"/>
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular/master/videogular.js" FileName="$(ScriptsFolder)\videogular.js"/>
+
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular-controls/master/controls.js" FileName="$(ScriptsFolder)\controls.js"/>
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular-controls/master/controls.min.js" FileName="$(ScriptsFolder)\controls.min.js"/>
+    
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular-poster/master/poster.js" FileName="$(ScriptsFolder)\poster.js"/>
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular-poster/master/poster.min.js" FileName="$(ScriptsFolder)\poster.min.js"/>
+    
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular-overlay-play/master/overlay-play.js" FileName="$(ScriptsFolder)\overlay-play.js"/>
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular-overlay-play/master/overlay-play.min.js" FileName="$(ScriptsFolder)\overlay-play.min.js"/>
+    
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular-buffering/master/buffering.js" FileName="$(ScriptsFolder)\buffering.js"/>
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular-buffering/master/buffering.min.js" FileName="$(ScriptsFolder)\buffering.min.js"/>
+    
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular-themes-default/master/videogular.css" FileName="$(StylesFolder)\videogular.css"/>
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular-themes-default/master/fonts/icomoon.dev.svg" FileName="$(StylesFolder)\fonts\icomoon.dev.svg"/>
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular-themes-default/master/fonts/icomoon.eot" FileName="$(StylesFolder)\fonts\icomoon.eot"/>
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular-themes-default/master/fonts/icomoon.ttf" FileName="$(StylesFolder)\fonts\icomoon.ttf"/>
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular-themes-default/master/fonts/icomoon.woff" FileName="$(StylesFolder)\fonts\icomoon.woff"/>
+    <MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="$(DownloadBasePath)/bower-videogular-themes-default/master/fonts/icomoon.svg" FileName="$(StylesFolder)\fonts\icomoon.svg"/>
+    
+  </Target>
+
+  <Target Name="UpdateNuspecFiles">
+    <ItemGroup>
+      <namespaces Include="MyNamespace">
+        <Prefix>DefaultNS</Prefix>
+        <Uri>http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd</Uri>
+      </namespaces>
+    </ItemGroup>
+
+    <Message Text="Updating nuspecFile1 $(nuspecFile1)" Importance="high"/>
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile1)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:version"
+                                       InnerText="$(PackageVersion)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile1)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:id"
+                                       InnerText="$(Project1Name)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile1)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:title"
+                                       InnerText="$(Project1Name)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile1)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:description"
+                                       InnerText="$(Package1Desc)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile1)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:releaseNotes"
+                                       InnerText="Updated for videogular version $(VideogularVersion)"/>
+    
+    
+    
+    <Message Text="Updating nuspecFile2 $(nuspecFile2)" Importance="high"/>
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile2)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:version"
+                                       InnerText="$(PackageVersion)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile2)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:id"
+                                       InnerText="$(Project2Name)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile2)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:title"
+                                       InnerText="$(Project2Name)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile2)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:description"
+                                       InnerText="$(Package2Desc)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile2)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:releaseNotes"
+                                       InnerText="Updated for videogular version $(VideogularVersion)"/>
+
+    <Message Text="Updating nuspecFile3 $(nuspecFile3)" Importance="high"/>
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile3)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:version"
+                                       InnerText="$(PackageVersion)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile3)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:id"
+                                       InnerText="$(Project3Name)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile3)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:title"
+                                       InnerText="$(Project3Name)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile3)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:description"
+                                       InnerText="$(Package3Desc)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile3)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:releaseNotes"
+                                       InnerText="Updated for videogular version $(VideogularVersion)"/>
+
+    <Message Text="Updating nuspecFile4 $(nuspecFile4)" Importance="high"/>
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile4)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:version"
+                                       InnerText="$(PackageVersion)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile4)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:id"
+                                       InnerText="$(Project4Name)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile4)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:title"
+                                       InnerText="$(Project4Name)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile4)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:description"
+                                       InnerText="$(Package4Desc)"/>
+
+    <MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+                                       Namespaces="@(namespaces)"
+                                       File="$(nuspecFile4)"
+                                       XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:releaseNotes"
+                                       InnerText="Updated for videogular version $(VideogularVersion)"/>
+
+  </Target>
+  
+
+
+</Project>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>videogular.core</id>
+        <version>ABC</version>
+        <title>videogular.2fdevs.plugins</title>
+        <authors>2fdevs(https://github.com/2fdevs/videogular)</authors>
+        <owners>Pinal  Bhatt [PBDesk]</owners>
+        <projectUrl>http://www.videogular.com/</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/2fdevs/videogular/master/app/favicon.ico</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Based on videogular {version}. Videogular is an HTML5 video player for AngularJS.</description>
+        <summary>Videogular is an HTML5 video player for AngularJS. Include core js library. Videogular is a wrapper over the HTML5 video tag, so you just could add whatever you want. This provides a very powerful, but simple to use solution, for everybody.</summary>
+        <releaseNotes>Updated for videogular version {version}</releaseNotes>
+        <language>en-US</language>
+        <tags>angular angularjs videogular html5 video</tags>
+      <dependencies>
+        <dependency id="AngularJS.Core" version="1.2.14" />
+        <dependency id="AngularJS.Sanitize" version="1.2.14" />
+      </dependencies>
+    </metadata>
+    <files>
+        <file src="content\scripts\videogular.js" target="content\scripts\videogular.js" />
+        <file src="content\scripts\videogular.min.js" target="content\scripts\videogular.min.js" />
+    </files>
+</package>

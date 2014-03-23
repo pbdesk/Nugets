@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30219.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "videogular", "videogular", "{8EEC20E8-869B-4FB0-B3A0-D047F44EA72B}"
+	ProjectSection(SolutionItems) = preProject
+		..\videogular\make.bat = ..\videogular\make.bat
+		..\videogular\params.rsp = ..\videogular\params.rsp
+		..\videogular\publish.bat = ..\videogular\publish.bat
+		..\videogular\videogular.2fdevs.plugins.nuspec = ..\videogular\videogular.2fdevs.plugins.nuspec
+		..\videogular\videogular.complete.nuspec = ..\videogular\videogular.complete.nuspec
+		..\videogular\videogular.core.nuspec = ..\videogular\videogular.core.nuspec
+		..\videogular\videogular.MSBuild = ..\videogular\videogular.MSBuild
+		..\videogular\videogular.themes.default.nuspec = ..\videogular\videogular.themes.default.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AngularJS", "AngularJS", "{683492AA-66AE-4507-8AA8-3254458D3EFA}"
+	ProjectSection(SolutionItems) = preProject
+		..\AngularJS\AngularJS.Bundled.nuspec = ..\AngularJS\AngularJS.Bundled.nuspec
+		..\AngularJS\AngularJS.MSBuild = ..\AngularJS\AngularJS.MSBuild
+		..\AngularJS\AngularJS.OnlyJS.nuspec = ..\AngularJS\AngularJS.OnlyJS.nuspec
+		..\AngularJS\AngularJS.sln = ..\AngularJS\AngularJS.sln
+		..\AngularJS\make.bat = ..\AngularJS\make.bat
+		..\AngularJS\params.rsp = ..\AngularJS\params.rsp
+		..\AngularJS\publish.bat = ..\AngularJS\publish.bat
+		..\AngularJS\publish1.bat = ..\AngularJS\publish1.bat
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Twitter.Bootstrap.Bootswatch", "Twitter.Bootstrap.Bootswatch", "{267196D9-B5C0-46EA-B487-3510278A3A23}"
+	ProjectSection(SolutionItems) = preProject
+		..\Twitter.Bootstrap.Bootswatch\build.MSBuild = ..\Twitter.Bootstrap.Bootswatch\build.MSBuild
+		..\Twitter.Bootstrap.Bootswatch\make.bat = ..\Twitter.Bootstrap.Bootswatch\make.bat
+		..\Twitter.Bootstrap.Bootswatch\Nuget.sln = ..\Twitter.Bootstrap.Bootswatch\Nuget.sln
+		..\Twitter.Bootstrap.Bootswatch\publish.bat = ..\Twitter.Bootstrap.Bootswatch\publish.bat
+		..\Twitter.Bootstrap.Bootswatch\Twitter.Bootstrap.Bootswatch.nuspec = ..\Twitter.Bootstrap.Bootswatch\Twitter.Bootstrap.Bootswatch.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "baseNuspecs", "baseNuspecs", "{53D42030-D8A3-4739-9B18-CD1AA7F2A328}"
+	ProjectSection(SolutionItems) = preProject
+		..\videogular\videogular.2fdevs.plugins.nuspec = ..\videogular\videogular.2fdevs.plugins.nuspec
+		..\videogular\videogular.complete.nuspec = ..\videogular\videogular.complete.nuspec
+		..\videogular\videogular.core.nuspec = ..\videogular\videogular.core.nuspec
+		..\videogular\videogular.themes.default.nuspec = ..\videogular\videogular.themes.default.nuspec
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{53D42030-D8A3-4739-9B18-CD1AA7F2A328} = {8EEC20E8-869B-4FB0-B3A0-D047F44EA72B}
+	EndGlobalSection
+EndGlobal

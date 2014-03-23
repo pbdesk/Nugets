@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>videogular.complete</id>
+        <version>ABC</version>
+        <title>videogular.complete</title>
+      <authors>2fdevs(https://github.com/2fdevs/videogular)</authors>
+      <owners>Pinal  Bhatt [PBDesk]</owners>
+      <projectUrl>http://www.videogular.com/</projectUrl>
+      <iconUrl>https://raw.githubusercontent.com/2fdevs/videogular/master/app/favicon.ico</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>ABC</description>
+        <summary>Videogular is an HTML5 video player for AngularJS. Include core js library and plugins(controls.js, buffering.js, overlay-play.js, poster.js) and default theme from 2fdevs. Videogular is a wrapper over the HTML5 video tag, so you just could add whatever you want. This provides a very powerful, but simple to use solution, for everybody.</summary>
+        <releaseNotes>Updated for {version}</releaseNotes>
+        <language>en-US</language>
+        <tags>angular angularjs videogular html5 video videogular-theme videogular-plugins</tags>
+      <dependencies>
+        <dependency id="AngularJS.Core" version="1.2.14" />
+        <dependency id="AngularJS.Sanitize" version="1.2.14" />
+      </dependencies>
+    </metadata>
+    <files>
+      <file src="content\scripts\videogular.js" target="content\scripts\videogular.js" />
+      <file src="content\scripts\videogular.min.js" target="content\scripts\videogular.min.js" />
+      <file src="content\scripts\controls.js" target="content\scripts\controls.js" />
+      <file src="content\scripts\controls.min.js" target="content\scripts\controls.min.js" />
+
+
+      <file src="content\scripts\buffering.js" target="content\scripts\buffering.js" />
+      <file src="content\scripts\buffering.min.js" target="content\scripts\buffering.min.js" />
+
+
+      <file src="content\scripts\overlay-play.js" target="content\scripts\overlay-play.js" />
+      <file src="content\scripts\overlay-play.min.js" target="content\scripts\overlay-play.min.js" />
+
+
+      <file src="content\scripts\poster.js" target="content\scripts\poster.js" />
+      <file src="content\scripts\poster.min.js" target="content\scripts\poster.min.js" />
+
+      <file src="content\Content\videogular.css" target="content\Content\videogular.css" />
+
+      <file src="content\Content\fonts\icomoon.dev.svg" target="content\Content\fonts\icomoon.dev.svg" />
+      <file src="content\Content\fonts\icomoon.eot" target="content\Content\fonts\icomoon.eot" />
+      <file src="content\Content\fonts\icomoon.svg" target="content\Content\fonts\icomoon.svg" />
+      <file src="content\Content\fonts\icomoon.ttf" target="content\Content\fonts\icomoon.ttf" />
+      <file src="content\Content\fonts\icomoon.woff" target="content\Content\fonts\icomoon.woff" />
+      
+    </files>
+</package>

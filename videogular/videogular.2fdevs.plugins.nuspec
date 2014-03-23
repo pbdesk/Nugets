@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>videogular.2fdevs.plugins</id>
+        <version>ABC</version>
+        <title>videogular.2fdevs.plugins</title>
+      <authors>2fdevs(https://github.com/2fdevs/videogular)</authors>
+      <owners>Pinal  Bhatt [PBDesk]</owners>
+      <projectUrl>http://www.videogular.com/</projectUrl>
+      <iconUrl>https://raw.githubusercontent.com/2fdevs/videogular/master/app/favicon.ico</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>ABC</description>
+        <summary>Plugins for videogular from 2fdevs. Includes controls.js, buffering.js, overlay-play.js and poster.js. Videogular is an HTML5 video player for AngularJS.</summary>
+        <releaseNotes>Updated for {version}</releaseNotes>
+        <language>en-US</language>
+        <tags>angular angularjs videogular html5 video videogular-plugins</tags>
+      <dependencies>
+        <dependency id="videogular.core" version="0.3.1" />
+      </dependencies>
+    </metadata>
+    <files>
+        
+      
+        <file src="content\scripts\controls.js" target="content\scripts\controls.js" />
+        <file src="content\scripts\controls.min.js" target="content\scripts\controls.min.js" />
+
+
+      <file src="content\scripts\buffering.js" target="content\scripts\buffering.js" />
+      <file src="content\scripts\buffering.min.js" target="content\scripts\buffering.min.js" />
+
+
+      <file src="content\scripts\overlay-play.js" target="content\scripts\overlay-play.js" />
+      <file src="content\scripts\overlay-play.min.js" target="content\scripts\overlay-play.min.js" />
+
+
+      <file src="content\scripts\poster.js" target="content\scripts\poster.js" />
+      <file src="content\scripts\poster.min.js" target="content\scripts\poster.min.js" />
+
+    </files>
+</package>
