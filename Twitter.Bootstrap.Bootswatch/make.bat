@@ -1,1 +1,1 @@
-msbuild build.MSBuild  /p:BootstrapVersion=3.1.1 /p:BuildNumber=1
+msbuild build.MSBuild  /p:BootstrapVersion=3.2.0 /p:BuildNumber=0
