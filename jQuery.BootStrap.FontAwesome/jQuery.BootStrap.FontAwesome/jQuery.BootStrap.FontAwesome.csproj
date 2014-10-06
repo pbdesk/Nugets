@@ -69,24 +69,18 @@
       <DependentUpon>Bootstrap.FontAwsome.css</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\font-awesome.min.css" />
-    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="packages.config" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="Content\Bootstrap.FontAwsome.css.bundle" />
-    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.0.js" />
-    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
     <None Include="Scripts\jQuery.Bootstrap.js.bundle" />
     <Content Include="Scripts\jQuery.Bootstrap.min.js.map">
       <DependentUpon>jQuery.Bootstrap.min.js</DependentUpon>
