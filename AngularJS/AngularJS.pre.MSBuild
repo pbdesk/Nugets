@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<ItemGroup>
+		<NGFiles Include="angular;angular-animate;angular-cookies;angular-loader;angular-resource;angular-route;angular-sanitize;angular-touch" />
+		
+	</ItemGroup>
+	<PropertyGroup>
+		<BaseFolder>$(MSBuildProjectDirectory)</BaseFolder>   
+		<PackagingDestination>$(BaseFolder)\Packages</PackagingDestination>    
+		<Project1Name>AngularJS.OnlyJS</Project1Name>
+		<Project2Name>AngularJS.Bundled</Project2Name>
+
+		<AngularVersion>A.B.C</AngularVersion>
+		<BuildNumber>0</BuildNumber>
+		<PackageVersion>1.3.0-rc4</PackageVersion>
+		
+
+		
+		<PackageFolder>$(PackagingDestination)\$(PackageVersion)</PackageFolder>
+		<ContentFolder>$(PackageFolder)\content</ContentFolder>
+		<ScriptsFolder>$(ContentFolder)\scripts</ScriptsFolder>
+		
+		
+		<NugetExe>$(BaseFolder)\..\NugetExe</NugetExe>
+		<MSBuildExtensionPack>$(BaseFolder)\..\MSBuild.ExtensionPack.4.0.8.0</MSBuildExtensionPack>
+		
+		
+		
+		<basenuspecFile11>$(BaseFolder)\$(Project1Name).nuspec</basenuspecFile11>
+		<basenuspecFile12>$(BaseFolder)\$(Project2Name).nuspec</basenuspecFile12>
+		
+		<nuspecFile1>$(PackageFolder)\$(Project1Name).$(PackageVersion).nuspec</nuspecFile1>
+		<nuspecFile2>$(PackageFolder)\$(Project2Name).$(PackageVersion).nuspec</nuspecFile2>
+
+
+		<nuspecPkgFile1>$(PackageFolder)\$(Project1Name).$(PackageVersion).nupkg</nuspecPkgFile1>
+		<nuspecPkgFile2>$(PackageFolder)\$(Project2Name).$(PackageVersion).nupkg</nuspecPkgFile2>
+		
+		<Package1Title>AngularJS $(AngularVersion) OnlyJS</Package1Title>
+		<Package1Desc>Based on AngularJS $(AngularVersion). Only JS files. Includes minified files. Excludes i18n files.</Package1Desc>
+
+		<Package2Title>AngularJS $(AngularVersion) Bundled &amp; Minified</Package2Title>
+		<Package2Desc>Based on AngularJS $(AngularVersion). Bundled &amp; Minified .js File.</Package2Desc>
+		
+	</PropertyGroup>
+	
+	<Import Project="$(MSBuildExtensionPack)\MSBuild.ExtensionPack.tasks"/>
+		
+	<Target Name="Publish">
+		<!-- Publish the nupkg to the well known NuGet server 
+					Note: "nuget setApiKey {put-your-api-key-here} -Source http://My_Nuget_Gallery_Service_Url/" must be run prior on the machine to ensure the api key is set correctly. -->
+		<Exec WorkingDirectory="$(PackageFolder)" 
+					Command="$(NugetExe)\NuGet.exe push $(nuspecPkgFile1) -source https://www.nuget.org/" />
+
+		<Exec WorkingDirectory="$(PackageFolder)"
+					Command="$(NugetExe)\NuGet.exe push $(nuspecPkgFile2) -source https://www.nuget.org/" />
+	</Target>
+	
+	
+	<Target  Name="Build" DependsOnTargets="CreateFolderStructure">
+		
+		<Exec WorkingDirectory="$(PackageFolder)"
+					Command="$(NugetExe)\nuget.exe pack $(nuspecFile1)" />
+		
+		<CallTarget Targets="CombineJS" />
+
+		<Exec WorkingDirectory="$(PackageFolder)"
+					Command="$(NugetExe)\nuget.exe pack $(nuspecFile2)" />
+
+	</Target>
+	
+	<Target Name="ShowMessages">
+
+
+	</Target>
+	
+	<Target Name="CreateFolderStructure">
+		
+
+		<Message Text="Creating Folder Structure" Importance="high"/>
+		
+		<MakeDir  Directories="$(PackageFolder)"/>
+		<MakeDir  Directories="$(ContentFolder)"/>
+		<MakeDir  Directories="$(ScriptsFolder)"/>
+
+		<Message Text="Downloading AngularJS files from Google CDN" Importance="high"/>
+		<CallTarget Targets="DownloadFiles" />
+		
+		<!--<Copy SourceFiles="@(SourceFiles)" DestinationFolder="$(PackageFolder)\content\scripts\%(RecursiveDir)" />-->
+
+		<Message Text="Copying Base .nuspec files" Importance="high"/>
+		<Copy SourceFiles="$(basenuspecFile11)" DestinationFiles="$(nuspecFile1)" />
+		<Copy SourceFiles="$(basenuspecFile12)" DestinationFiles="$(nuspecFile2)" />
+
+		<CallTarget Targets="UpdateNuspecFiles" />
+																	
+	</Target>
+
+
+	<Target Name="CombineJS">
+
+		<CreateItem Include="$(ScriptsFolder)\%(NGFiles.Identity).min.js">
+			<Output TaskParameter="Include" ItemName="jsFilesToCombine" />
+		</CreateItem>
+		
+		<Message Text="%(jsFilesToCombine.FullPath)" />
+		<ReadLinesFromFile File="%(jsFilesToCombine.FullPath)">
+			<Output TaskParameter="Lines" ItemName="jsLines" />
+		</ReadLinesFromFile>
+
+		<WriteLinesToFile File="$(ScriptsFolder)\angular.bundled.min.js" Lines="@(jsLines)" Overwrite="true" />
+		
+	</Target>
+
+	<Target Name="DownloadFiles">
+
+		<MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="https://ajax.googleapis.com/ajax/libs/angularjs/$(AngularVersion)/%(NGFiles.Identity).js" FileName="$(ScriptsFolder)\%(NGFiles.Identity).js"/>
+		<MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="https://ajax.googleapis.com/ajax/libs/angularjs/$(AngularVersion)/%(NGFiles.Identity).min.js" FileName="$(ScriptsFolder)\%(NGFiles.Identity).min.js"/>
+		<MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="https://ajax.googleapis.com/ajax/libs/angularjs/$(AngularVersion)/%(NGFiles.Identity).min.js.map" FileName="$(ScriptsFolder)\%(NGFiles.Identity).min.js.map"/>
+
+		<MSBuild.ExtensionPack.Web.WebClient TaskAction="DownloadFile" Url="https://ajax.googleapis.com/ajax/libs/angularjs/$(AngularVersion)/angular-mocks.js" FileName="$(ScriptsFolder)\angular-mocks.js"/>
+ 
+	</Target>
+
+	<Target Name="UpdateNuspecFiles">
+		<ItemGroup>
+			<namespaces Include="MyNamespace">
+				<Prefix>DefaultNS</Prefix>
+				<Uri>http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd</Uri>
+			</namespaces>
+		</ItemGroup>
+
+		<Message Text="Updating nuspecFile1" Importance="high"/>
+		<MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+																			 Namespaces="@(namespaces)"
+																			 File="$(nuspecFile1)"
+																			 XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:version"
+																			 InnerText="$(PackageVersion)"/>
+
+		<MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+																			 Namespaces="@(namespaces)"
+																			 File="$(nuspecFile1)"
+																			 XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:id"
+																			 InnerText="$(Project1Name)"/>
+
+		<MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+																			 Namespaces="@(namespaces)"
+																			 File="$(nuspecFile1)"
+																			 XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:title"
+																			 InnerText="$(Package1Title)"/>
+
+		<MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+																			 Namespaces="@(namespaces)"
+																			 File="$(nuspecFile1)"
+																			 XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:description"
+																			 InnerText="$(Package1Desc)"/>
+
+		<MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+																			 Namespaces="@(namespaces)"
+																			 File="$(nuspecFile1)"
+																			 XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:releaseNotes"
+																			 InnerText="Updated for AngularJS Version $(AngularVersion)"/>
+		
+		
+		
+		<Message Text="Updating nuspecFile2" Importance="high"/>
+		<MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+																			 Namespaces="@(namespaces)"
+																			 File="$(nuspecFile2)"
+																			 XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:version"
+																			 InnerText="$(PackageVersion)"/>
+
+		<MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+																			 Namespaces="@(namespaces)"
+																			 File="$(nuspecFile2)"
+																			 XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:id"
+																			 InnerText="$(Project2Name)"/>
+
+		<MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+																			 Namespaces="@(namespaces)"
+																			 File="$(nuspecFile2)"
+																			 XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:title"
+																			 InnerText="$(Package2Title)"/>
+
+		<MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+																			 Namespaces="@(namespaces)"
+																			 File="$(nuspecFile2)"
+																			 XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:description"
+																			 InnerText="$(Package2Desc)"/>
+
+		<MSBuild.ExtensionPack.Xml.XmlFile TaskAction="UpdateElement"
+																			 Namespaces="@(namespaces)"
+																			 File="$(nuspecFile2)"
+																			 XPath="/DefaultNS:package/DefaultNS:metadata/DefaultNS:releaseNotes"
+																			 InnerText="Bundled &amp; Minified for AngularJS Version $(AngularVersion)"/>
+
+	</Target>
+	
+
+
+</Project>
